@@ -3,6 +3,8 @@
 #define TMPBUFFLEN 128
 #define NULL 0
 
+#include <stdio.h>
+
 typedef struct StudentRecordStruct {
 char name[1+MAXNAMELEN];
 int id;

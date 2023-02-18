@@ -90,5 +90,16 @@ int findEntry(StudentRecord *list, char *name, int id){
 }
 
 int printList(StudentRecord *list){
-
+    if (list == NULL){
+        printf("(List is empty)");
+        return 0;
+    }
+    else{
+        StudentRecord *curr = list;
+        while (curr != NULL) {
+            printf("%s|%d\n", curr->name, curr->id);
+            curr = curr->next;
+        }
+        return 0;
+    }
 }
