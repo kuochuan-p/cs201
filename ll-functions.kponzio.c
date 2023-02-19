@@ -1,7 +1,12 @@
 #include "ll-functions.kponzio.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
 
 int insertEntry(StudentRecord **list, char *name, int id){
-    if(*name == NULL || id < 0){
+    if(name == NULL || id < 0){
         return 8;
     }
     StudentRecord *curr = *list;
@@ -15,11 +20,11 @@ int insertEntry(StudentRecord **list, char *name, int id){
         *list = newRecord; // set the list to be the new node
     } else {
         // list is not empty: find where new record should go
-        while(id > curr->id && curr != NULL){
+        while(curr != NULL && id > curr->id){
             prev = curr;
             curr = curr->next;
         }
-        if (curr->id == id){
+        if (curr != NULL && curr->id == id){
             return 8;
         }
         if(prev != NULL){
@@ -67,7 +72,7 @@ int modifyEntry(StudentRecord *list, char *name, int id){
         return 8;
     }
     else{
-        strcpy(curr->name, *name);
+        strcpy(curr->name, name);
         return 0;
     }
 }
@@ -84,7 +89,7 @@ int findEntry(StudentRecord *list, char *name, int id){
         return 8;
     }
     else{
-        strcpy(*name, curr->name);
+        strcpy(name, curr->name);
         return 0;
     }
 }
@@ -97,7 +102,7 @@ int printList(StudentRecord *list){
     else{
         StudentRecord *curr = list;
         while (curr != NULL) {
-            printf("%s|%d\n", curr->name, curr->id);
+            printf("|%s|%d\n", curr->name, curr->id);
             curr = curr->next;
         }
         return 0;
